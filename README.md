@@ -141,7 +141,7 @@ plt.show()
 ### Visualize Data
 
 ```python
-# Plotting the trends
+# Plotting the trend
 plt.figure(figsize=(25, 8))
 plt.xlim(1950, 2025)
 df.groupby('releaseYear')['averageRating'].mean().plot(kind='line', marker='.')
