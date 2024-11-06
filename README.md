@@ -1,12 +1,32 @@
 # Overview
 
+Welcome to my analysis of the top 1000 shows based on IMDB ratings. This project was driven by my curiosity and a desire to apply the skills I've learned so far.
+
+The data for this analysis is sourced from [kaggle.com (IMDb Top 1000 TV Series)](https://www.kaggle.com/datasets/octopusteam/imdb-top-1000-tv-series?resource=download), which provides detailed information on titles, genres, average ratings, popularity, and release years. Using a series of Python scripts, I explore key questions such as how show quality has changed over the years, shifts in genre popularity, and the most dominant shows.
+
 # The Questions
 
 Below are the questions I want to answer in my project:
 
+1. What are the trends in TV show quality over time?
+2. How are the ratings of top TV shows distributed?
+3. How have average ratings for TV shows changed over the years?
+4. What is the relationship between the number of votes and average ratings for TV shows?
+5. What are the top 10 TV shows based on ratings and popularity?
+6. What are the top 10 genres based on ratings and popularity?
+7. How have the genre tags on TV shows evolved over time?
+
 # Tools I Used
 
 For my deep dive into the top 1000 tv series on IMDB, I harnessed the power of several key tools:
+
+- **Python:** The backbone of my analysis, allowing me to analyze the data and find critical insights.I also used the following Python libraries:
+    - **Pandas Library:** This was used to analyze the data. 
+    - **Matplotlib Library:** I visualized the data.
+    - **Seaborn Library:** Helped me create more advanced visuals. 
+- **Jupyter Notebooks:** The tool I used to run my Python scripts which let me easily include my notes and analysis.
+- **PyCharm:** My go-to for executing my Python scripts.
+- **GitHub:** Sharing my Python code and analysis, ensuring project tracking.
 
 ## Import & Clean Up Data
 
@@ -25,7 +45,7 @@ dataset = pd.read_csv(r'data/IMDB_Top_1000_TV_shows.csv')
 # The Analysis
 Each Jupyter notebook for this project aimed at investigating specific aspects of the data. Here’s how I approached each question:
 
-## 1. What are tv-shows trends quality-wise?
+## 1. What are the trends in TV show quality over time?
 
 ### Visualize Data
 
@@ -94,9 +114,10 @@ plt.show()
 
 
 
-## 2. How does top shows ratings are distributed?
+## 2. How are the ratings of top TV shows distributed?
 
 ### Visualize Data
+
 ```python
 # Distribution of Average Ratings
 df['averageRating'].plot(kind='hist', bins=17, edgecolor='black')
@@ -109,15 +130,16 @@ plt.show()
 
 ### Insights:
 
-- High Overall Ratings: Given that this dataset represents the top 1000 shows on IMDb, the right-skewed distribution (with most ratings between 8.0 and 8.6) suggests that highly rated shows dominate, reflecting consistent quality among the best-rated series.
+- **High Overall Ratings:** Given that this dataset represents the top 1000 shows on IMDb, the right-skewed distribution (with most ratings between 8.0 and 8.6) suggests that highly rated shows dominate, reflecting consistent quality among the best-rated series.
 
-- Peak Popularity Around 8.2: The most common rating among the top shows is around 8.2, indicating that a large portion of these highly regarded series falls in this range. This rating can be seen as the "benchmark" for quality in the top 1000 shows.
+- **Peak Popularity Around 8.2:** The most common rating among the top shows is around 8.2, indicating that a large portion of these highly regarded series falls in this range. This rating can be seen as the "benchmark" for quality in the top 1000 shows.
 
-- Exclusive Few Above 9.0: Only a select few shows achieve ratings above 9.0, underscoring their exceptional status even among the best. These outliers likely represent some of the most iconic and universally acclaimed shows on IMDb.
+- **Exclusive Few Above 9.0:** Only a select few shows achieve ratings above 9.0, underscoring their exceptional status even among the best. These outliers likely represent some of the most iconic and universally acclaimed shows on IMDb.
 
-## 3.
+## 3. How have average ratings for TV shows changed over the years?
 
 ### Visualize Data
+
 ```python
 plt.figure(figsize=(25, 8))
 plt.xlim(1950, 2025)
@@ -132,9 +154,18 @@ plt.show()
 ### Results
 ![Visualization Of The Trend of Average Ratings Over The Years](images/3_trend_of_average_ratings_over_the_years.png)
 
-## 4.
+### Insights:
+
+- **Fluctuating Ratings in Early Years:** The average ratings of the top 1000 TV shows display significant volatility from the 1950s through the 1980s, marked by several peaks above 8.5 and dips near 8.0. This variability could be attributed to the smaller number of shows produced during this period, which likely intensified the impact of individual ratings on the overall trend.
+
+- **Stabilization in Recent Years:** After 2000, the average ratings show a more consistent pattern, generally staying between 8.2 and 8.4, with fewer drastic fluctuations compared to earlier years.
+
+- **Gradual Decline Post-2015:** A subtle downward trend is observed in average ratings starting around 2015, suggesting a potential shift in viewer preferences or rating standards in recent years.
+
+## 4. What is the relationship between the number of votes and average ratings for TV shows?
 
 ### Visualize Data
+
 ```python
 from matplotlib.ticker import FuncFormatter
 
@@ -178,9 +209,18 @@ plt.show()
 ### Results
 ![Visualization Of Number of Votes vs. Average Rating](images/4_number_of_votes_vs_average_rating.png)
 
-## 5.
+### Insights:
+
+- **Highly Rated Shows with High Votes:** Popular shows like "Breaking Bad" and "Game of Thrones" stand out with both high average ratings (above 9) and a high number of votes (over 2 million), showing a strong positive correlation between popularity and ratings.
+
+- **Density Around Mid-Level Votes and Ratings:** The majority of shows cluster around average ratings of 8.0 to 8.8 with vote counts ranging from a few hundred thousand to under one million, indicating a typical range for popular yet less unanimously acclaimed shows.
+
+- **Lower Ratings with Fewer Votes:** There are fewer shows with lower ratings (near 8.0) and low vote counts, suggesting that TV shows in the top 1000 are generally well-received and tend to have a substantial fanbase.
+
+## 5. What are the top 10 TV shows based on ratings and popularity?
 
 ### Visualize Data
+
 ```python
 # Define top 10 shows by rating
 top_rat = df.nlargest(10, 'averageRating')
@@ -193,11 +233,18 @@ sns.barplot(data=top_rat, x='averageRating', y='title', hue='title',  palette='v
 plt.show()
 ```
 ### Results
-![Visualization Of Top 10 Shows By Rating](images/5_top_shows_by_rating.png)
+![Visualization Of Top 10 Shows By Rating](images/5_1_top_shows_by_rating.png)
 
-## 6.
+### Insights:
+
+- **Top-Rated Shows on IMDb:** "Breaking Bad" leads as the highest-rated show among the top 1000 IMDb-rated TV shows, showcasing its widespread acclaim and popularity.
+
+- **Nature and Documentary Series Stand Out:** Documentaries such as "Planet Earth II," "Planet Earth," and "Blue Planet II" rank highly, indicating the strong appeal of high-quality, nature-focused content to audiences.
+
+- **Consistent Excellence Across Genres:** This list includes a diverse range of genres, from animated series like "Avatar: The Last Airbender" to intense dramas like "The Wire" and "Chernobyl," suggesting that top-rated shows are not confined to a single genre but span various themes and formats.
 
 ### Visualize Data
+
 ```python
 # Define top 10 shows by popularity
 top_num = df.nlargest(10, 'numVotes')
@@ -215,20 +262,134 @@ plt.gca().xaxis.set_major_formatter(FuncFormatter(millions_formatter))
 # Show the plot
 plt.show()
 ```
+
 ### Results
-![Visualization Of Top 10 Genres By Rating](images/6_top_shows_by_popularity.png)
-## 7.
+![Visualization Of Top 10 Shows By Rating](images/5_2_top_shows_by_popularity.png)
+
+### Insights:
+
+- Game of Thrones and Breaking Bad dominate in popularity, with both shows receiving significantly more votes than other series, showcasing their widespread appeal and strong fan bases.
+
+- Stranger Things and Friends follow as the next most popular shows, indicating a blend of both contemporary and nostalgic preferences among viewers.
+
+- How I Met Your Mother ranks the lowest in popularity among the top ten, highlighting a smaller, though still substantial, following compared to the leading shows.
+
+## 6. What are the top 10 genres based on ratings and popularity?
+
+### Exploding the data
+
+```python
+# Assuming genres are separated by commas
+df['genres'] = df['genres'].str.split(',')
+
+# Explode the genres into separate rows
+df_exploded = df.explode('genres')
+
+# Strip any whitespace from the genre names
+df_exploded['genres'] = df_exploded['genres'].str.strip()
+```
 
 ### Visualize Data
-```python
 
+```python
+# Calculate the mean average rating for each genre and select the top 10
+genre_ratings = df.explode('genres').groupby('genres')['averageRating'].mean().sort_values(ascending=False).head(10).reset_index()
+
+# Create a horizontal bar plot with seaborn
+plt.figure(figsize=(12, 8))
+sns.barplot(data=genre_ratings, x='averageRating', y='genres', hue='genres', palette='viridis')
+
+# Show the plot
+plt.show()
 ```
 ### Results
-![Visualization Of Top 10 Genres By Rating](images/7_average_ratings_by_genre.png)
-## 8.
+![Visualization Of Top 10 Genres By Rating](images/6_1_top_genres_by_rating.png)
+
+### Insights:
+
+- **Documentary and War Genres Lead in Ratings:** The "Documentary" and "War" genres have the highest ratings, suggesting that audiences rate these genres favorably, possibly due to their informative or impactful nature.
+
+- **Popularity Across Informational Content:** Genres like "News," "Documentary," and "History" are highly rated, indicating a strong viewer interest in content that provides knowledge, context, or real-world insights.
+
+- **Family and Western Genres Also Well-Rated:** Though traditionally niche, "Family" and "Western" genres have high ratings, suggesting a notable appreciation for these types of content among viewers.
 
 ### Visualize Data
-```python
 
+```python
+# Calculate the mean average votes for each genre and select the top 10
+genre_votes = df.explode('genres').groupby('genres')['numVotes'].mean().sort_values(ascending=False).head(10).reset_index()
+
+# Create a horizontal bar plot with seaborn
+plt.figure(figsize=(12, 8))
+sns.barplot(data=genre_votes, x='numVotes', y='genres', hue='genres', palette='viridis')
+
+# Create a function to format the x-axis labels
+def millions_formatter(x, _):
+    return f'{x / 1_000:.1f}K' if x >= 25_000 else str(int(x))  # Format as '25K', '50K', etc.
+
+# Apply the millions formatter to the x-axis
+plt.gca().xaxis.set_major_formatter(FuncFormatter(millions_formatter))
+
+# Show the plot
+plt.show()
 ```
+
 ### Results
+![Visualization Of Top 10 Genres By Rating](images/6_2_top_shows_by_popularity.png)
+
+### Insights:
+
+- **Horror Genre Dominates:** Horror is the most popular genre by a significant margin, receiving the highest number of votes compared to other genres.
+
+- **Biography and Thriller are Close Contenders:** Biography and Thriller follow Horror, showing substantial popularity and similar vote counts, making them strong competitors in audience preference.
+
+- **Drama has Lower Popularity:** Drama ranks the lowest in this chart, with fewer votes compared to the other genres, indicating relatively lower interest in this category among audiences.
+
+## 7. How have the genre tags on TV shows evolved over time?
+
+### Preparing the data
+
+```python
+# Clean up the genre names by stripping spaces and converting to capitalized
+df['genres'] = df['genres'].apply(lambda x: [genre.strip().title() for genre in x])
+
+# Remove duplicates within the 'genres' column
+df['genres'] = df['genres'].apply(lambda x: list(set(x)))  # Remove duplicates in the list of genres
+
+# Explode the 'genres' column to have each genre as a separate row, then group by 'releaseYear' and 'genres'
+genre_counts = df.explode('genres').groupby(['releaseYear', 'genres']).size().unstack(fill_value=0)
+
+# Calculate the total count for each genre
+total_genre_counts = genre_counts.sum(axis=0)  # Sum counts for each genre across all years
+
+# Identify the top 10 genres
+top_10_genres = total_genre_counts.nlargest(10).index  # Get the names of the top 10 genres
+
+# Filter the genre_counts DataFrame to include only the top 10 genres
+top_10_genre_counts = genre_counts[top_10_genres]
+```
+
+### Visualize Data
+
+```python
+# Plotting the data
+top_10_genre_counts.plot(kind='area', stacked=True, figsize=(25, 8))
+
+# Adjust the x-axis ticks to show every 5 years
+plt.xticks(ticks=range(min(rating_trends['releaseYear'] - 1), max(rating_trends['releaseYear']) + 2, 5))
+
+# Move the legend to the top left corner
+plt.legend(loc="upper left")
+
+# Limit axis
+plt.xlim(1950, 2025)
+plt.ylim(bottom=0.1)  # Adjust bottom limit to 0.1 or another value greater than 0
+
+# Show the plot
+plt.show()
+```
+
+### Results
+![Visualization Of Top 10 Genres By Rating](images/7_trend_of_genre_tags_over_time.png)
+
+### Insights:
