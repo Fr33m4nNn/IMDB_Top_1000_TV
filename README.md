@@ -2,7 +2,7 @@
 
 Welcome to my analysis of the top 1000 shows based on IMDB ratings. This project was driven by my curiosity and a desire to apply the skills I've learned so far.
 
-The data for this analysis is sourced from [kaggle.com (IMDb Top 1000 TV Series)](https://www.kaggle.com/datasets/octopusteam/imdb-top-1000-tv-series?resource=download), which provides detailed information on titles, genres, average ratings, popularity, and release years. Using a series of Python scripts, I explore key questions such as how show quality has changed over the years, shifts in genre popularity, and the most dominant shows.
+The data for this analysis is sourced from [kaggle (IMDb Top 1000 TV Series)](https://www.kaggle.com/datasets/octopusteam/imdb-top-1000-tv-series?resource=download), which provides detailed information on titles, genres, average ratings, popularity, and release years. Using a series of Python scripts, I explore key questions such as how show quality has changed over the years, shifts in genre popularity, and the most dominant shows.
 
 # The Questions
 
