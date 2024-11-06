@@ -110,7 +110,7 @@ plt.show()
 
 - **Wider Spread in the 1990s:** The distance between the highest and lowest ratings is more pronounced in the 1990s, indicating a broader range in the quality or reception of shows from that period. This may reflect a more experimental era in television, with some shows achieving high acclaim and others receiving lower scores.
 
-<span style="color: #66CDAA;">*Even through these two plots might seem similar, one shows the annual distribution of ratings (Box Plot) and the other tracks changes in key percentiles over time (Line Plot).*</span>
+*Even through these two plots might seem similar, one shows the annual distribution of ratings (Box Plot) and the other tracks changes in key percentiles over time (Line Plot).*
 
 
 
