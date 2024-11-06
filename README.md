@@ -394,6 +394,11 @@ plt.show()
 
 ### Insights:
 
+- **Increase in Genre Diversity Over Time:** Since the 1980s, there has been a noticeable increase in the variety of genres, with more genres appearing in larger volumes over the years. This suggests a growing trend in producing content across multiple genres.
+
+- **Significant Growth Post-2000:** Around the early 2000s, there is a sharp rise in the number of entries across all genres, with peaks occurring in the 2010s and early 2020s. This period represents a boom in media content, possibly driven by advancements in digital media and streaming platforms.
+
+- **Drama and Comedy as Dominant Genres:** The blue and orange sections representing Drama and Comedy are consistently larger throughout the years, indicating that these genres have been the most prevalent and stable over time compared to others.
 
 # What I Learned
 
