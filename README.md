@@ -138,6 +138,11 @@ plt.show()
 
 ### Insights:
 
+- **Significant Growth in Recent Decades:** The number of top shows released per year remained relatively low and stable from the 1950s to the early 2000s. However, there was a noticeable increase starting around 2010, suggesting a recent surge in high-quality TV productions.
+
+- **Peak Around 2018:** The chart shows a peak in the number of top shows released around 2018, with the count dropping slightly in the following years. This may indicate a saturation or shift in production trends.
+
+- **Fluctuations Post-2010:** After the initial rise around 2010, there were notable fluctuations year by year, possibly reflecting changes in industry trends, viewing habits, or external factors affecting TV production, like the impact of streaming platforms or the COVID-19 pandemic.
 
 
 ## 3. How are the ratings of top TV shows distributed?
