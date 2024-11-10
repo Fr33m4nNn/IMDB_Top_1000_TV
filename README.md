@@ -2,19 +2,20 @@
 
 Welcome to my analysis of the top 1000 shows based on IMDB ratings. This project was driven by my curiosity and a desire to apply the skills I've learned so far.
 
-The data for this analysis is sourced from [kaggle (IMDb Top 1000 TV Series)](https://www.kaggle.com/datasets/octopusteam/imdb-top-1000-tv-series?resource=download), which provides detailed information on titles, genres, average ratings, popularity, and release years. Using a series of Python scripts, I explore key questions such as how show quality has changed over the years, shifts in genre popularity, and the most dominant shows.
+The data for this analysis is sourced from [kaggle (IMDb Top 1000 TV Series 10/24)](https://www.kaggle.com/datasets/octopusteam/imdb-top-1000-tv-series?resource=download), which provides detailed information on titles, genres, average ratings, popularity, and release years. Using a series of Python scripts, I explore key questions such as how show quality has changed over the years, shifts in genre popularity, and the most dominant shows.
 
 # The Questions
 
 Below are the questions I want to answer in my project:
 
 1. What are the trends in TV show quality over time?
-2. How are the ratings of top TV shows distributed?
-3. How have average ratings for TV shows changed over the years?
-4. What is the relationship between the number of votes and average ratings for TV shows?
-5. What are the top 10 TV shows based on ratings and popularity?
-6. What are the top 10 genres based on ratings and popularity?
-7. How have the genre tags on TV shows evolved over time?
+2. How has the number of top shows released varied over the years?
+3. How are the ratings of top TV shows distributed?
+4. How have average ratings for TV shows changed over the years?
+5. What is the relationship between the number of votes and average ratings for TV shows?
+6. What are the top 10 TV shows based on ratings and popularity?
+7. What are the top 10 genres based on ratings and popularity?
+8. How have the genre tags on TV shows evolved over time?
 
 # Tools I Used
 
@@ -112,9 +113,34 @@ plt.show()
 
 *Even through these two plots might seem similar, one shows the annual distribution of ratings (Box Plot) and the other tracks changes in key percentiles over time (Line Plot).*
 
+## 2. How has the number of top shows released varied over the years?
+
+### Visualize Data
+
+```python
+# Group the DataFrame by 'releaseYear' and aggregate the 'title' column to count the number of titles in each year
+df_grouped_by_year = df.groupby('releaseYear').agg({'title': 'count'})
+
+# Rename the column from 'title' to 'title_count' for clarity
+df_grouped_by_year = df_grouped_by_year.rename(columns={'title': 'title_count'})
+
+# Plotting the trend
+df_grouped_by_year.plot(kind='line', marker='.', figsize=(25, 8), legend=False)
+
+# Adjust the x-axis ticks to show every 5 years
+plt.xticks(ticks=range(min(rating_trends['releaseYear'] - 1), max(rating_trends['releaseYear']) + 2, 5))
+
+# Show the plot
+plt.show()
+```
+### Results
+![Visualization Of Distribution of Average Ratings](images/2_distribution_of_top_shows_released_over_the_years.png)
+
+### Insights:
 
 
-## 2. How are the ratings of top TV shows distributed?
+
+## 3. How are the ratings of top TV shows distributed?
 
 ### Visualize Data
 
@@ -126,7 +152,7 @@ df['averageRating'].plot(kind='hist', bins=17, edgecolor='black')
 plt.show()
 ```
 ### Results
-![Visualization Of Distribution of Average Ratings](images/2_distribution_of_average_ratings.png)
+![Visualization Of Distribution of Average Ratings](images/3_distribution_of_average_ratings.png)
 
 ### Insights:
 
@@ -136,7 +162,7 @@ plt.show()
 
 - **Exclusive Few Above 9.0:** Only a select few shows achieve ratings above 9.0, underscoring their exceptional status even among the best. These outliers likely represent some of the most iconic and universally acclaimed shows on IMDb.
 
-## 3. How have average ratings for TV shows changed over the years?
+## 4. How have average ratings for TV shows changed over the years?
 
 ### Visualize Data
 
@@ -153,7 +179,7 @@ plt.xticks(ticks=range(min(rating_trends['releaseYear'] - 1), max(rating_trends[
 plt.show()
 ```
 ### Results
-![Visualization Of The Trend of Average Ratings Over The Years](images/3_trend_of_average_ratings_over_the_years.png)
+![Visualization Of The Trend of Average Ratings Over The Years](images/4_trend_of_average_ratings_over_the_years.png)
 
 ### Insights:
 
@@ -163,7 +189,7 @@ plt.show()
 
 - **Gradual Decline Post-2015:** A subtle downward trend is observed in average ratings starting around 2015, suggesting a potential shift in viewer preferences or rating standards in recent years.
 
-## 4. What is the relationship between the number of votes and average ratings for TV shows?
+## 5. What is the relationship between the number of votes and average ratings for TV shows?
 
 ### Visualize Data
 
@@ -208,7 +234,7 @@ plt.gca().xaxis.set_major_formatter(FuncFormatter(millions_formatter))
 plt.show()
 ```
 ### Results
-![Visualization Of Number of Votes vs. Average Rating](images/4_number_of_votes_vs_average_rating.png)
+![Visualization Of Number of Votes vs. Average Rating](images/5_number_of_votes_vs_average_rating.png)
 
 ### Insights:
 
@@ -218,7 +244,7 @@ plt.show()
 
 - **Lower Ratings with Fewer Votes:** There are fewer shows with lower ratings (near 8.0) and low vote counts, suggesting that TV shows in the top 1000 are generally well-received and tend to have a substantial fanbase.
 
-## 5. What are the top 10 TV shows based on ratings and popularity?
+## 6. What are the top 10 TV shows based on ratings and popularity?
 
 ### Visualize Data
 
@@ -234,7 +260,7 @@ sns.barplot(data=top_rat, x='averageRating', y='title', hue='title',  palette='v
 plt.show()
 ```
 ### Results
-![Visualization Of Top 10 Shows By Rating](images/5_1_top_shows_by_rating.png)
+![Visualization Of Top 10 Shows By Rating](images/6_1_top_shows_by_rating.png)
 
 ### Insights:
 
@@ -265,7 +291,7 @@ plt.show()
 ```
 
 ### Results
-![Visualization Of Top 10 Shows By Rating](images/5_2_top_shows_by_popularity.png)
+![Visualization Of Top 10 Shows By Rating](images/6_2_top_shows_by_popularity.png)
 
 ### Insights:
 
@@ -275,7 +301,7 @@ plt.show()
 
 - How I Met Your Mother ranks the lowest in popularity among the top ten, highlighting a smaller, though still substantial, following compared to the leading shows.
 
-## 6. What are the top 10 genres based on ratings and popularity?
+## 7. What are the top 10 genres based on ratings and popularity?
 
 ### Exploding the data
 
@@ -304,7 +330,7 @@ sns.barplot(data=genre_ratings, x='averageRating', y='genres', hue='genres', pal
 plt.show()
 ```
 ### Results
-![Visualization Of Top 10 Genres By Rating](images/6_1_top_genres_by_rating.png)
+![Visualization Of Top 10 Genres By Rating](images/7_1_top_genres_by_rating.png)
 
 ### Insights:
 
@@ -336,7 +362,7 @@ plt.show()
 ```
 
 ### Results
-![Visualization Of Top 10 Genres By Rating](images/6_2_top_shows_by_popularity.png)
+![Visualization Of Top 10 Genres By Rating](images/7_2_top_shows_by_popularity.png)
 
 ### Insights:
 
@@ -346,7 +372,7 @@ plt.show()
 
 - **Drama has Lower Popularity:** Drama ranks the lowest in this chart, with fewer votes compared to the other genres, indicating relatively lower interest in this category among audiences.
 
-## 7. How have the genre tags on TV shows evolved over time?
+## 8. How have the genre tags on TV shows evolved over time?
 
 ### Preparing the data
 
@@ -391,7 +417,7 @@ plt.show()
 ```
 
 ### Results
-![Visualization Of Top 10 Genres By Rating](images/7_trend_of_genre_tags_over_time.png)
+![Visualization Of Top 10 Genres By Rating](images/8_trend_of_genre_tags_over_time.png)
 
 ### Insights:
 
